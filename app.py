@@ -1,29 +1,28 @@
 import streamlit as st
-import pandas as pd
 import joblib
-import os
 from pathlib import Path
+
 st.set_page_config(
     page_title="Diabetes Prediction",
     page_icon="🩺",
     layout="centered"
 )
 
-
-
 BASE_DIR = Path(__file__).resolve().parent
 MODEL_PATH = BASE_DIR / "diabetes_model.pkl"
 
-st.title("🩺 Diabetes Prediction")
-st.write("Enter the patient's details to predict the diabetes outcome.")
+st.title("TEST - NEW DIABETES APP")
+
+st.write("App folder:", BASE_DIR)
+st.write("Files found:", [file.name for file in BASE_DIR.iterdir()])
 
 if not MODEL_PATH.exists():
-    st.error(f"Model file not found: {MODEL_PATH}")
+    st.error("diabetes_model.pkl is NOT found")
     st.stop()
 
 model = joblib.load(MODEL_PATH)
 
-model = joblib.load(MODEL_PATH)
+st.success("Model loaded successfully!")
 
 # Inputs based on the standard diabetes prediction dataset
 gender = st.selectbox("Gender", ["Female", "Male", "Other"])
