@@ -9,14 +9,19 @@ st.set_page_config(
     layout="centered"
 )
 
-MODEL_PATH = "models/diabetes_model.pkl"
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
+MODEL_PATH = BASE_DIR / "diabetes_model.pkl"
 
 st.title("🩺 Diabetes Prediction")
 st.write("Enter the patient's details to predict the diabetes outcome.")
 
-if not os.path.exists(MODEL_PATH):
-    st.error("Model file not found. Please run train_model.py first.")
+if not MODEL_PATH.exists():
+    st.error(f"Model file not found: {MODEL_PATH}")
     st.stop()
+
+model = joblib.load(MODEL_PATH)
 
 model = joblib.load(MODEL_PATH)
 
