@@ -2,14 +2,14 @@ import streamlit as st
 import pandas as pd
 import joblib
 import os
-
+from pathlib import Path
 st.set_page_config(
     page_title="Diabetes Prediction",
     page_icon="🩺",
     layout="centered"
 )
 
-from pathlib import Path
+
 
 BASE_DIR = Path(__file__).resolve().parent
 MODEL_PATH = BASE_DIR / "diabetes_model.pkl"
